@@ -1,0 +1,100 @@
+
+
+
+.moviepage{
+    width: 100%;
+    height: 100%; 
+    background: #f40;   
+}
+
+.moviebox{
+	height: 40px;
+	width: 100%;
+	display: flex;
+	border-bottom: 1px solid #f40;
+}
+
+.moviehot{
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	flex-grow: 1;
+}
+.movieready{
+	text-align: center;
+	height: 40px;
+	line-height: 40px;
+	flex-grow: 1;
+}
+.moviebox>.active{
+    position: relative;
+    color: #f40;   
+}
+.moviebox>.active:after{
+    content: '';
+    display: block;
+    width: 100%;
+    border-bottom: 2px solid #f40;
+    position: absolute;
+    left: 0;bottom: 0;
+}
+
+.movie-list{
+    width: 100%;
+    padding: 0 10px; 
+    box-sizing: border-box;  
+}
+
+.movie-main{
+    display: flex;
+    width: 100%;
+    border-bottom: 1px dashed #ccc;
+    padding: 20px 0;
+}
+
+.movie-main>img{
+    width: 60px;
+    height: 80px;
+}
+
+.main-list{
+    display: flex;
+    flex-flow: column;
+    margin-left: 10px;
+}
+.main-list>h1{
+    font-size: 16px;
+    font-weight: 100;
+}
+.main-list p{
+
+    font-size: 12px;
+    margin-top:10px; 
+    color: #8e8e8e;
+}
+.main-list .number p{
+    width: 110px;
+}
+
+.main-list .number{
+    display: flex;
+}
+
+.main-list .number p span{
+    color: #8aa2bf;
+}
+
+.grade{
+    padding-right: 30px;
+    color: #ccc;
+}
+
+.grade strong{
+    color: #f40;
+}
+.time{display: flex;margin-top: 10px;}
+.time>strong{
+    color: #f40;
+    width: 100px;
+    font-size: 14px;
+}

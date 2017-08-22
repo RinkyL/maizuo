@@ -1,0 +1,38 @@
+
+
+#mybg{
+    background: #f6f6f6;
+}
+
+.suer{
+    width: 100%;
+    padding: 0 30px;
+    display: flex;
+    flex-flow: column;
+    box-sizing: border-box;
+    align-items: center;
+}
+.suer>input{
+    width: 100%;
+    height: 40px;
+    background: #f6f6f6;
+    font-size: 14px;color: #ccc;
+    border: 1px solid #ccc;
+    outline: none;
+    margin-top: 30px;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+
+.suer>button{
+    margin-top: 50px;
+    width: 180px;
+    height: 40px;
+    background: #fe8233;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+}

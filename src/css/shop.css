@@ -1,0 +1,10 @@
+
+
+#shopmain{
+    background: #fff;
+}
+.menu{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
