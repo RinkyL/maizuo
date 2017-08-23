@@ -24,9 +24,35 @@ function getShop(){
     })
 }
 
+function getShopCargo(){
+    return new Promise ((resolve,reject)=>{
+        axios.get(`${API.shopCargoApi}`)
+        .then((res)=>{
+            var newArr = res.data.data.list.map((item)=>{
+                var obj = {};
+                //商品名字
+                obj.name = item.masterName;
+                //id
+                obj.id = item.id
+                //销量
+                obj.displaySalesCount = item.displaySalesCount
+                //价格和商品图片
+                obj.img = item.skuList
+                
+                return obj
+            })
+            resolve(newArr)
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    })
+}
+
 
 
 
 export default{
-    getShop
+    getShop,
+    getShopCargo
 }
