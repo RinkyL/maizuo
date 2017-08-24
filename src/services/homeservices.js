@@ -26,6 +26,8 @@ function getHomeConent(){
                 var newItem = {};
                 //片名
                 newItem.name = item.name;
+                //ID
+                newItem.id = item.id;
                 //图片
                 newItem.Imgpath = item.cover.origin;
                 //上线影院数量
@@ -54,12 +56,19 @@ function getHomeConent(){
                     var newItem = {};
                     //片名
                     newItem.name = item.name;
+                    //id
+                    newItem.id = item.id;
                     //图片
                     newItem.Imgpath = item.cover.origin;
                     //上线影院数量
                     newItem.cinemaCount = item.cinemaCount;
                     //上映日期
-                    newItem.premiereAt = item.premiereAt;
+                    var now = new Date(item.premiereAt);
+                    var MM = now.getMonth()+1;
+                    var dd = now.getDate();
+                    var time = MM+"月"+dd+"日"
+
+                    newItem.premiereAt = time;
                     //购票人数
                     newItem.watchCount = item.watchCount;
                     return newItem
@@ -83,6 +92,8 @@ function getHomeConent(){
                     newItem.name = item.name;
                     //图片
                     newItem.Imgpath = item.poster.origin;
+                    //id
+                     newItem.id = item.id;
                     //上线影院数量                    
                     newItem.cinemaCount = item.cinemaCount;                  
                     //购票人数
@@ -114,6 +125,8 @@ function getHomeConent(){
                     newItem.name = item.name;
                     //图片
                     newItem.imgpath = item.poster.origin;
+                    //id
+                    newItem.id = item.id;
                     //简介
                     newItem.intro = item.intro;
                     //时间
@@ -133,173 +146,101 @@ function getHomeConent(){
         return new Promise((resolve,reject)=>{
             axios.get(`${API.cinemaApi}__t=${new Date().getTime()}`)
             .then((response)=>{                
-                
-                            
-                //宝安区                   
-                var baoanArr = {
-                                title: "宝安区" ,
-                                arr: [],
-                                show:true
-                               };
-                //福田区
-                var futianArr = {
-                                 title: '福田区',
-                                 arr: [],
-                                 show:false
-                                };
-                //龙岗区
-                var lgArr = {
-                             title: '龙岗区',
-                             arr: [],
-                             show:false
-                            };
-                //坪山新区
-                var psArr = {
-                             title: '坪山新区',
-                             arr: [],
-                             show:false
-                            };
-                //南山区
-                var nsArr = {
-                             title: '南山区',
-                             arr: [],
-                             show:false
-                            };
-                //光明新区
-                var gmArr = {
-                                title: '光明新区',
-                                arr: [],
-                                show:false
-                            };
-                //龙华新区
-                var lhArr ={
-                                title: '龙华新区',
-                                arr: [],
-                                show:false
-                           };
-                //罗湖区
-                var luohArr = {
-                                title: '罗湖区',
-                                arr: [],
-                                show:false
+                var newArr = response.data.data.cinemas;
 
-                              };
-                //盐田区
-                var ytArr = {
-                                title: '盐田区',
-                                arr: [],
-                                show:false
-                            };
-                //判断所属的辖区
+                var arr1 = [];
+                var arr2 = [];
+                //遍历出影院的地区
+                newArr.map((item,index)=>{
+                    //声明变量,接受影院的地区名字
+                    var player = item.district.name;
+                    //判定该影院地区是否存在于数组中,如果不存在,添加到数据中
+                    if(arr1.indexOf(player)==-1){
+                        arr1.push(player);
+                    }
+                })
+                //遍历所获得的影院地区的数据
+                arr1.map((item,index)=>{
+                    //每个地区的影院
+                    arr2.push({
+                        title:item,
+                        arr:[]
+                    })	
+                })
+                //匹配相同的名字数组.获取当中数据和赋值
+                newArr.map((item,index)=>{
+                    arr2.map((item2,index2)=>{
+                        if(item2.title == item.district.name){
+                            item2.arr.push(item);
+                        }
+                    })
+                })
 
-                var newArrt = [];
-                newArrt.push(baoanArr);
-                newArrt.push(futianArr);
-                newArrt.push(nsArr);
-                newArrt.push(lgArr);
-                newArrt.push(lhArr);
-                newArrt.push(gmArr);
-                newArrt.push(ytArr);
-                newArrt.push(psArr);
-                newArrt.push(luohArr);
-
-                var newArr = response.data.data.cinemas.map((item)=>{                  
-                    if(item.district.name === "宝安区"){
-                        var obj = {};
-                        //电影院名字
-                        obj.name = item.name;
-                        //id
-                        obj.id = item.id;
-                        //电影院地址
-                        obj.address = item.address;
-                        baoanArr.arr.push(obj);                       
-                    }
-                    else if(item.district.name === "南山区"){
-                        var obj = {};
-                        //电影院名字
-                        obj.name = item.name;
-                        //id
-                        obj.id = item.id;
-                        //电影院地址
-                        obj.address = item.address;
-                        nsArr.arr.push(obj);             
-                    }
-                    else if(item.district.name ==="罗湖区"){
-                         var obj = {};
-                        //电影院名字
-                        obj.name = item.name;
-                        //id
-                        obj.id = item.id;
-                        //电影院地址
-                        obj.address = item.address;
-                        luohArr.arr.push(obj);
-                    }
-                    else if(item.district.name ==="福田区"){
-                         var obj = {};
-                        //电影院名字
-                        obj.name = item.name;
-                        //id
-                        obj.id = item.id;
-                        //电影院地址
-                        obj.address = item.address;
-                        futianArr.arr.push(obj);
-                    }
-                    else if(item.district.name ==="龙岗区"){
-                         var obj = {};
-                        //电影院名字
-                        obj.name = item.name;
-                        //id
-                        obj.id = item.id;
-                        //电影院地址
-                        obj.address = item.address;
-                        lgArr.arr.push(obj);
-                    }
-                    else if(item.district.name == "龙华新区"){
-                         var obj = {};
-                        //电影院名字
-                        obj.name = item.name;
-                        //id
-                        obj.id = item.id;
-                        //电影院地址
-                        obj.address = item.address;
-                        lhArr.arr.push(obj);
-                    }
-                    else if(item.district.name ==="光明新区"){
-                         var obj = {};
-                        //电影院名字
-                        obj.name = item.name;
-                        //id
-                        obj.id = item.id;
-                        //电影院地址
-                        obj.address = item.address;
-                        gmArr.arr.push(obj);
-                    }
-                    else if(item.district.name === "坪山新区"){
-                         var obj = {};
-                        //电影院名字
-                        obj.name = item.name;
-                        //id
-                        obj.id = item.id;
-                        //电影院地址
-                        obj.address = item.address;
-                        psArr.arr.push(obj);
-                    }
-                    else if(item.district.name === "盐田区"){
-                         var obj = {};
-                        //电影院名字
-                        obj.name = item.name;
-                        //id
-                        obj.id = item.id;
-                        //电影院地址
-                        obj.address = item.address;
-                        ytArr.arr.push(obj);
-                    }                  
-                })  
-                resolve(newArrt)
+                console.log(arr2)
+                resolve(arr2)
             })
             .catch((error)=>{
                 console.log(error)
             })
+        })
+    }
+
+    function getDetails(id){
+        return new Promise((resolve,reject)=>{
+            axios.get(`${API.detailsApi}${id}?__t=${new Date().getTime()}`)
+            .then((res)=>{
+                console.log(res.data.data.film.name)
+                var arr = [];
+                arr.push(res.data.data.film)              
+                var newArr = arr.map((item)=>{
+                     var newObj = {};
+                    //影片名字
+                    newObj.name = item.name;
+                    //id
+                    newObj.id = item.id;
+                    //图片
+                    newObj.img =item.cover.origin;
+                    //简介
+                    newObj.synopsis = item.synopsis;
+                    //导演
+                    newObj.director = item.director;
+                    //上映时间
+                    var now = new Date(item.premiereAt);
+                    console.log(now)
+                    var MM = now.getMonth()+1;
+                    var dd = now.getDate();                   
+                    var time = MM +"月"+dd+"日"
+                    console.log(time)
+                    newObj.time = time
+                    //语言
+                    newObj.language = item.language;
+                    //主演
+                      var arr2 =[];
+                        for(var i = 0; i<item.actors.length; i++){
+                            if( i < item.actors.length-1){
+                                var name = item.actors[i].name + "|"
+                                arr2.push(name)
+                            }else if( i == item.actors.length-1){
+                                console.log(i)
+                                var name =  item.actors[i].name
+                                arr2.push(name)
+                            }
+                        }
+                    newObj.actors = arr2; 
+                    //类型
+                    newObj.category = item.category;
+                    //地区
+                    newObj.nation = item.nation
+
+                    return newObj
+                })
+                console.log(newArr)       
+                resolve(newArr)
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+           
         })
     }
 
@@ -309,5 +250,6 @@ export default {
     getHomeReady,
     getMovieHot,
     getMovieReady,
-    getCinema
+    getCinema,
+    getDetails
 }

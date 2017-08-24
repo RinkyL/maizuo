@@ -20,6 +20,8 @@ const cinemaApi= "/v4/api/cinema?"
 const shoppingApi= "/api/ad/list"
 //商城商品链接
 const shopCargoApi = "/api/recommend/home?page=1&num=20"
+//电影详情链接接口
+const detailsApi = "/v4/api/film/"
 
 export default {
     //banneraip链接
@@ -39,5 +41,7 @@ export default {
   //商城链接
   shoppingApi,
   //商城商品链接
-  shopCargoApi
+  shopCargoApi,
+  //电影详情链接
+  detailsApi
 }

@@ -15,6 +15,7 @@ import Cinema from './page/Cinema.js'
 import Movie from './page/Movie.js'
 import MovieHot from './common/Movies/MovieHot.js'
 import MovieReady from './common/Movies/MovieReady.js'
+import Details from './common/details/Details.js'
 
 
 import './css/app.css'
@@ -48,6 +49,7 @@ export default class App extends Component{
 					<Route path="/casd" component={Casd}/>
 					<Route path="/movie-hot" component={MovieHot}/>
 					<Route path="/movie-ready" component={MovieReady}/>
+					<Route path="/details-list/:id" component={Details}/>
 				</div>
 			</BrowserRouter>
 		)

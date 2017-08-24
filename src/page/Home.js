@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import homService from '../services/homeServices.js'
+import {Link} from 'react-router-dom'
 
 import '../css/home.css'
 
@@ -36,19 +37,21 @@ export default class Card extends Component{
 						this.state.contendData.map((item,index)=>{
 							return(
 								<div class="main" key={index}>
-									<img src={item.Imgpath}/>
-									<div class="message">										
-										<div class="titlename">
-											{item.name}
-											<p>
-												{item.cinemaCount}家影院上映&nbsp;{item.watchCount}人购票
-											</p>
-										</div>
+									<Link to={"details-list/"+item.id}>
+										<img src={item.Imgpath}/>
+										<div class="message">										
+											<div class="titlename">
+												{item.name}
+												<p>
+													{item.cinemaCount}家影院上映&nbsp;{item.watchCount}人购票
+												</p>
+											</div>
 
-										<div class="grade">
-											{item.grade}
+											<div class="grade">
+												{item.grade}
+											</div>
 										</div>
-									</div>
+									</Link>
 								</div>
 							)
 						})
@@ -61,17 +64,19 @@ export default class Card extends Component{
 						this.state.contendReadyData.map((item,index)=>{
 							return(
 								<div class="main" key={index}>
-									<img src={item.Imgpath}/>
-									<div class="message">										
-										<div class="titlename">
-											{item.name}
-											
-										</div>
+									<Link to={"details-list/"+item.id}>
+										<img src={item.Imgpath}/>
+										<div class="message">										
+											<div class="titlename">
+												{item.name}
+												
+											</div>
 
-										<div class="grade">
-											{item.premiereAt}
+											<div class="grade">
+												{item.premiereAt}
+											</div>
 										</div>
-									</div>
+									</Link>	
 								</div>
 							)
 						})

@@ -24,6 +24,10 @@
 .cinemalist>ul{
     width: 100%;
 }
+.cinemalist>ul>li>a{
+    display: flex;
+    width: 100%;
+}
 .cinemalist>ul>li{
     display: flex;
     width: 100%;

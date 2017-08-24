@@ -1,6 +1,7 @@
 
 import React,{Component} from 'react'
 import {NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import movieService from '../../services/homeServices.js'
 import	'../../css/movie.css'
 
@@ -24,16 +25,17 @@ export default class MovieReady extends Component{
 						this.state.movieReadyData.map((item,index)=>{
                             return(
                                 <div class="movie-main" key={index}>
-                                     <img src={item.imgpath} /> 
-                                    <div class="main-list">
-                                        <h1>{item.name}</h1>
-                                        <p>{item.intro}</p>
-                                        <div class="time">
-                                            <strong>8月25号</strong>
-                                            <strong>星期5</strong>
-                                        </div>                                            
-                                    </div>
-                                                               
+                                    <Link to={"details-list/"+item.id}>
+                                        <img src={item.imgpath} /> 
+                                        <div class="main-list">
+                                            <h1>{item.name}</h1>
+                                            <p>{item.intro}</p>
+                                            <div class="time">
+                                                <strong>8月25号</strong>
+                                                <strong>星期5</strong>
+                                            </div>                                            
+                                        </div>
+                                    </Link>                           
                                 </div>
                             )	
 						})

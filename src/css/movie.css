@@ -47,12 +47,15 @@
 
 .movie-main{
     display: flex;
-    width: 100%;
+}
+.movie-main>a{
+     width: 100%;
     border-bottom: 1px dashed #ccc;
     padding: 20px 0;
+     display: flex;
 }
 
-.movie-main>img{
+.movie-main>a>img{
     width: 60px;
     height: 80px;
 }

@@ -31,13 +31,18 @@
 	width: 100%;
 	flex-flow: column;
 }
-.contend .main>img{
+.contend .main>a{
+	display: flex;
+	width: 100%;
+	flex-flow: column;
+}
+.contend .main>a>img{
 	display: block;
 	width: 100%;
 	
 }
 
-.contend .main>.message{
+.contend .main>a>.message{
 	width: 100%;
 	height: 50px;
 	background: #fff;
